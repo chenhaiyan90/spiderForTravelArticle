@@ -89,6 +89,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-# STORE_URL='http://47.93.52.70:8081/articleService/articleService/save'
+STORE_URL='http://47.93.52.70:8081/articleService/articleService/save'
 
 # COMMANDS_MODULE = 'spiderForChinacityTravel.commands'

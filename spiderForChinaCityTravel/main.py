@@ -1,6 +1,6 @@
 from scrapy import cmdline
 # cmdline.execute('scrapy crawl amazon_products -o items.csv -t csv'.split()) 例子
-names=['travelPeople','cnta']
+names=['cnta','travelPeople']
 for val in names:
     cmd = 'scrapy crawl {0}'.format(val)
     cmdline.execute(cmd.split())
