@@ -66,7 +66,7 @@ ROBOTSTXT_OBEY = False
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    # 'spiderForChinaCityTravel.pipelines.SpiderforchinacitytravelPipeline': 300,
-   # 'spiderForChinaCityTravel.pipelines.requestApiStorePipeline': 300,
+   'spiderForChinaCityTravel.pipelines.requestApiStorePipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -89,6 +89,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-STORE_URL='http://47.93.52.70:8081/articleService/articleService/save'
+# STORE_URL='http://47.93.52.70:8081/articleService/articleService/save'
 
-COMMANDS_MODULE = 'spiderForChinacityTravel.commands'
+# COMMANDS_MODULE = 'spiderForChinacityTravel.commands'
