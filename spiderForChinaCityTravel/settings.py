@@ -67,6 +67,9 @@ ROBOTSTXT_OBEY = False
 ITEM_PIPELINES = {
    # 'spiderForChinaCityTravel.pipelines.SpiderforchinacitytravelPipeline': 300,
    'spiderForChinaCityTravel.pipelines.requestApiStorePipeline': 300,
+
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'spiderForChinaCityTravel.userAgentMiddlewares.RotateUserAgentMiddleware': 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

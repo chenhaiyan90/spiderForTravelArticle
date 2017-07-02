@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import re
+
+import jieba
 import scrapy
 from scrapy.utils.response import get_base_url
 
@@ -32,14 +35,24 @@ class TravelpeopleSpider(scrapy.Spider):
     def parse_item(self, response):
         # self.logger.info()
         contentDiv = response.xpath('//div[@class="box_con"]').extract_first()
+        if contentDiv is None:
+             return
         content = contentDiv.replace('\xa0', '').replace('\r', '').replace('\n', '').replace('\t', '')
+        srcs=re.findall(r"src=\"(.*?)\"",content,re.S)
+        for a in srcs:
+            if a.startswith('http'):
+                continue
+            content=re.sub(a,response.urljoin(a),content)
         item = articleInfoItem()
         item['originUrl'] = self.baseUrl
         item['url'] = get_base_url(response)
         item['originName'] = '人民旅游网'
         item['title'] = response.xpath('//title/text()').extract_first().replace('\xa0', ',')
         item['abstracts'] = response.xpath('//meta[@name="description"]').xpath('@content').extract_first()
-        item['keywords'] = response.xpath('//meta[@name="keywords"]').xpath('@content').extract_first()
+        keywords = response.xpath('//meta[@name="keywords"]').xpath('@content').extract_first()
+        if keywords is None:
+            keywords=",".join(jieba._pcut_for_search(item['title']))
+        item['keywords'] = keywords
         item['content'] = content
         item['type'] = 'policyNews'
         item['group'] = 'hotspot'
